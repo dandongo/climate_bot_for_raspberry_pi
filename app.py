@@ -48,86 +48,85 @@ for proc in psutil.process_iter():
 sensor = adafruit_dht.DHT11(board.D23)
 
 def take_reading():
+    # take sensor readings
+    humidity = sensor.humidity
+    temperature = sensor.temperature
+    # for testing, decomment to override sensor readings to -- for example -- trigger the corresponding alarm
+    #temperature = 90
+    #humidity = 5
+    #check readings for values out of range
+    day_night = "day"
     try:
-        # take sensor readings
-        humidity = sensor.humidity
-        temperature = sensor.temperature
-        # for testing, decomment to override sensor readings to -- for example -- trigger the corresponding alarm
-        #temperature = 90
-        #humidity = 5
-        #check readings for values out of range
-        day_night = "day"
-        try:
-            day_night = day_or_night()
-        except:
-            print("could not determine if day or night, using day")
-        if temperature < bcp[stage]["temperature"][day_night]["minimum"]:
-            print("temperature is too low for " + day_night)
-            message_title = emoji_low_temperature + emoji_low_temperature + emoji_low_temperature + \
-                "LOW Temperature Alert! " + emoji_low_temperature + emoji_low_temperature + \
-                emoji_low_temperature + "\nRecorded " + str(temperature) + "C (mininum for " + stage + " is set to " + \
-                str(bcp[stage]["temperature"][day_night]["minimum"]) + "C)"
-            send_text = "https://api.telegram.org/bot" + TOKEN + "/sendMessage?chat_id=" + CHAT_ID + "&parse_mode=Markdown&text=" + message_title
-            requests.get(send_text)
-        if temperature > bcp[stage]["temperature"][day_night]["maximum"]:
-            print("temperature is too high for " + day_night)
-            message_title = emoji_high_temperature + emoji_high_temperature + emoji_high_temperature + \
-                "HIGH Temperature Alert! " + emoji_high_temperature + emoji_high_temperature + \
-                emoji_high_temperature + "\nRecorded " + str(temperature) + "C (maximum for " + stage + " is set to " + \
-                str(bcp[stage]["temperature"][day_night]["maximum"]) + "C)"
-            send_text = "https://api.telegram.org/bot" + TOKEN + "/sendMessage?chat_id=" + CHAT_ID + "&parse_mode=Markdown&text=" + message_title
-            requests.get(send_text)
-        if humidity < bcp[stage]["humidity"]["minimum"]:
-            print("humidity is too low")
-            message_title = emoji_low_humidity + emoji_low_humidity + emoji_low_humidity + \
-                "LOW Humidity Alert! " + emoji_low_humidity + emoji_low_humidity + \
-                emoji_low_humidity + "\nRecorded " + str(humidity) + " (mininum for " + stage + " is set to " + \
-                str(bcp[stage]["humidity"]["minimum"]) + ")"
-            send_text = "https://api.telegram.org/bot" + TOKEN + "/sendMessage?chat_id=" + CHAT_ID + "&parse_mode=Markdown&text=" + message_title
-            requests.get(send_text)
-        if humidity > bcp[stage]["humidity"]["maximum"]:
-            print("humidity is too high")
-            message_title = emoji_high_humidity + emoji_high_humidity + emoji_high_humidity + \
-                "HIGH Humidity Alert! " + emoji_high_humidity + emoji_high_humidity + \
-                emoji_high_humidity + "\nRecorded " + str(humidity) + " (mininum for " + stage + " is set to " + \
-                str(bcp[stage]["humidity"]["maximum"]) + ")"
-            send_text = "https://api.telegram.org/bot" + TOKEN + "/sendMessage?chat_id=" + CHAT_ID + "&parse_mode=Markdown&text=" + message_title
-            requests.get(send_text)
+        day_night = day_or_night()
+    except:
+        print("could not determine if day or night, using day")
+    if temperature < bcp[stage]["temperature"][day_night]["minimum"]:
+        print("temperature is too low for " + day_night)
+        message_title = emoji_low_temperature + emoji_low_temperature + emoji_low_temperature + \
+            "LOW Temperature Alert! " + emoji_low_temperature + emoji_low_temperature + \
+            emoji_low_temperature + "\nRecorded " + str(temperature) + "C (mininum for " + stage + " is set to " + \
+            str(bcp[stage]["temperature"][day_night]["minimum"]) + "C)"
+        send_text = "https://api.telegram.org/bot" + TOKEN + "/sendMessage?chat_id=" + CHAT_ID + "&parse_mode=Markdown&text=" + message_title
+        requests.get(send_text)
+    if temperature > bcp[stage]["temperature"][day_night]["maximum"]:
+        print("temperature is too high for " + day_night)
+        message_title = emoji_high_temperature + emoji_high_temperature + emoji_high_temperature + \
+            "HIGH Temperature Alert! " + emoji_high_temperature + emoji_high_temperature + \
+            emoji_high_temperature + "\nRecorded " + str(temperature) + "C (maximum for " + stage + " is set to " + \
+            str(bcp[stage]["temperature"][day_night]["maximum"]) + "C)"
+        send_text = "https://api.telegram.org/bot" + TOKEN + "/sendMessage?chat_id=" + CHAT_ID + "&parse_mode=Markdown&text=" + message_title
+        requests.get(send_text)
+    if humidity < bcp[stage]["humidity"]["minimum"]:
+        print("humidity is too low")
+        message_title = emoji_low_humidity + emoji_low_humidity + emoji_low_humidity + \
+            "LOW Humidity Alert! " + emoji_low_humidity + emoji_low_humidity + \
+            emoji_low_humidity + "\nRecorded " + str(humidity) + " (mininum for " + stage + " is set to " + \
+            str(bcp[stage]["humidity"]["minimum"]) + ")"
+        send_text = "https://api.telegram.org/bot" + TOKEN + "/sendMessage?chat_id=" + CHAT_ID + "&parse_mode=Markdown&text=" + message_title
+        requests.get(send_text)
+    if humidity > bcp[stage]["humidity"]["maximum"]:
+        print("humidity is too high")
+        message_title = emoji_high_humidity + emoji_high_humidity + emoji_high_humidity + \
+            "HIGH Humidity Alert! " + emoji_high_humidity + emoji_high_humidity + \
+            emoji_high_humidity + "\nRecorded " + str(humidity) + " (mininum for " + stage + " is set to " + \
+            str(bcp[stage]["humidity"]["maximum"]) + ")"
+        send_text = "https://api.telegram.org/bot" + TOKEN + "/sendMessage?chat_id=" + CHAT_ID + "&parse_mode=Markdown&text=" + message_title
+        requests.get(send_text)
 
-        # get timestamp
-        ts = str(time.time())
-        
-        # create the reading to append to the json
-        reading = {
-            "timestamp" : ts,
-            "readings" : {
-                "temperature" : temperature,
-                "humidity" : humidity 
-            }
-        }
+    # get timestamp
+    ts = str(time.time())
     
-        try:
-            if os.path.exists(readings_file):
-                print("readings file exists! " + readings_file)
-                with open(readings_file, 'r') as f:
-                    data = json.load(f)
-            else:
-                print("file doesn't exist! " + readings_file)
-                data = {
-                    sensor_id : reading
-                }
-            print(reading)
-            
-            data[sensor_id].append(reading)
-            with open(readings_file, 'w') as f:
-                json.dump(data, f, indent=4)
+    # create the reading to append to the json
+    reading = {
+        "timestamp" : ts,
+        "readings" : {
+            "temperature" : temperature,
+            "humidity" : humidity 
+        }
+    }
 
-        except:
-            print("WARNING: Could not write readings to file!")
-    except RuntimeError as error:
-        print(error.args[0])
-    except Exception as error:
-        sensor.exit()
-        raise error
+    try:
+        if os.path.exists(readings_file):
+            print("readings file exists! " + readings_file)
+            with open(readings_file, 'r') as f:
+                data = json.load(f)
+        else:
+            print("file doesn't exist! " + readings_file)
+            data = {
+                sensor_id : reading
+            }
+        print(reading)
+        
+        data[sensor_id].append(reading)
+        with open(readings_file, 'w') as f:
+            json.dump(data, f, indent=4)
 
-take_reading()
+    except:
+        print("WARNING: Could not write readings to file!")
+try:
+    take_reading()
+except RuntimeError as error:
+    print(error.args[0])
+except Exception as error:
+    sensor.exit()
+    raise error
