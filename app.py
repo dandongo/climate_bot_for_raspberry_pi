@@ -98,11 +98,8 @@ def take_reading():
     
     # create the reading to append to the json
     reading = {
-        "timestamp" : ts,
-        "readings" : {
             "temperature" : temperature,
             "humidity" : humidity 
-        }
     }
 
     try:
@@ -113,11 +110,11 @@ def take_reading():
             print(data)
             print(sensor_id)
             print(reading)
-            data[sensor_id].append(reading)
+            data[sensor_id].update({ts : reading})
         else:
             print("file doesn't exist! " + readings_file)
             data = {
-                sensor_id : reading
+                sensor_id : {ts : reading}
             }
         with open(readings_file, 'w') as f:
             json.dump(data, f, indent=4)
