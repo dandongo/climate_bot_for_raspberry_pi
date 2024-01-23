@@ -114,13 +114,7 @@ def take_reading():
             else:
                 print("file doesn't exist! " + readings_file)
                 data = {
-                    sensor_id : {
-                        "timestamp" : ts,
-                        "readings" : {
-                            "temperature" : temperature,
-                            "humidity" : humidity 
-                        }
-                    }
+                    sensor_id : reading
                 }
             print(reading)
             
