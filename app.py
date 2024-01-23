@@ -45,9 +45,9 @@ args = parser.parse_args()
 for proc in psutil.process_iter():
     if proc.name() == 'libgpiod_pulsein' or proc.name() == 'libgpiod_pulsei':
         proc.kill()
-sensor = adafruit_dht.DHT11(board.D23)
 
 def take_reading():
+    sensor = adafruit_dht.DHT11(board.D23)
     # take sensor readings
     humidity = sensor.humidity
     temperature = sensor.temperature
@@ -115,9 +115,9 @@ def take_reading():
             data = [sensor_id]
         print(reading)
         
-        data[sensor_id].append(reading)
-        with open(readings_file, 'w') as f:
-            json.dump(data, f, indent=4)
+#        data[sensor_id].append(reading)
+#        with open(readings_file, 'w') as f:
+#            json.dump(data, f, indent=4)
 
     except:
         print("WARNING: Could not write readings to file!")
