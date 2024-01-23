@@ -112,9 +112,7 @@ def take_reading():
                 data = json.load(f)
         else:
             print("file doesn't exist! " + readings_file)
-            data = {
-                sensor_id : reading
-            }
+            data = [sensor_id]
         print(reading)
         
         data[sensor_id].append(reading)
@@ -123,6 +121,7 @@ def take_reading():
 
     except:
         print("WARNING: Could not write readings to file!")
+
 try:
     take_reading()
 except RuntimeError as error:
