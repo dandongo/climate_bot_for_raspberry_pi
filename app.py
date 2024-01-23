@@ -14,15 +14,13 @@ from dotenv import load_dotenv
 from config import Config
 
 # global variables
-# time between readings
-interval = 60
 # name the sensor
-sensor_id = "dht11_01"
+sensor_id = config['SENSOR_ID']
 # define absolute directory for the log file
-log_file = "/home/ubuntu/git/climate/hyg_log.json"
+log_file = 
 #telegram stuff
-TOKEN = "6536298415:AAH81I-gqKTVFhM5e_Z8_fXI3Bma1UhZGXg"
-CHAT_ID = "811059940"
+TOKEN = 
+CHAT_ID = 
 # emoji codes
 emoji_low_temperature = "\U0001F976"
 emoji_high_temperature = "\U0001F975"
