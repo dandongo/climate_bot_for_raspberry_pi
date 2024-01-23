@@ -118,8 +118,10 @@ def take_reading():
         try:
             if os.path.exists(readings_file):
                 print("readings file exists!" + readings_file)
+            else:
+                print("could not write readings to file: " + readings_file)
         except:
-            print("could not write readings to file: " + readings_file)
+            print("WARNING: Could not write readings to file!")
     except RuntimeError as error:
         print(error.args[0])
     except Exception as error:
