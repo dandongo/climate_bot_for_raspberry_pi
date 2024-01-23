@@ -110,14 +110,14 @@ def take_reading():
             print("readings file exists! " + readings_file)
             with open(readings_file, 'r') as f:
                 data = json.load(f)
+            data[sensor_id].append(reading)
         else:
             print("file doesn't exist! " + readings_file)
-            data = {sensor_id}
-        print(reading)
-        
-        data[sensor_id].append(reading)
-#        with open(readings_file, 'w') as f:
-#            json.dump(data, f, indent=4)
+            data = {
+                sensor_id : reading
+            }
+        with open(readings_file, 'w') as f:
+            json.dump(data, f, indent=4)
 
     except:
         print("WARNING: Could not write readings to file!")
