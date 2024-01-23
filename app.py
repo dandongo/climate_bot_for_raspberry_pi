@@ -112,7 +112,7 @@ def take_reading():
                 data = json.load(f)
         else:
             print("file doesn't exist! " + readings_file)
-            data = [sensor_id]
+            data = {sensor_id}
         print(reading)
         
         data[sensor_id].append(reading)
