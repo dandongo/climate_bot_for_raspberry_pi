@@ -5,20 +5,27 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 load_dotenv(os.path.join(basedir, '.env'))
 
 class Config(object):
+    # this/these are the values you are most likely to want to change
+    # uncomment the stage your plants are in.
+    STAGE = "seedling"
+    #STAGE = "vegetation"
+    #STAGE = "flowering"
+    # name your sensor
+    SENSOR_ID = "dht11_01"
+    # emoji codes
+    EMOJI_LOW_TEMPERATURE = "\U0001F976"
+    EMOJI_HIGH_TEMPERATURE = "\U0001F975"
+    EMOJI_LOW_HUMIDITY = "\U0001F335"
+    EMOJI_HIGH_HUMIDITY = "\U0001F4A6"
+
+    # these settings are imported from the private .env file.
+    #     create a .env file with the below values 
     TOKEN = os.environ.get('TOKEN')
     CHAT_ID = os.environ.get('CHAT_ID')
     LAT = os.environ.get('LAT')
     LNG = os.environ.get('LNG')
-    # adjustable configurations
-    # name the sensor
-    SENSOR_ID = os.environ.get('SENSOR_ID') or "dht11_01"
-    # define absolute directory for the log file
-    LOG_FILE = os.environ.get('LOG_FILE') or "/home/ubuntu/git/climate/hyg_log.json"
-    # emoji codes
-    EMOJI_LOW_TEMPERATURE = os.environ.get('EMOJI_LOW_TEMPERATURE') or "\U0001F976"
-    EMOJI_HIGH_TEMPERATURE = os.environ.get('EMOJI_HIGH_TEMPERATURE') or "\U0001F975"
-    EMOJI_LOW_HUMIDITY = os.environ.get('EMOJI_LOW_HUMIDITY') or "\U0001F335"
-    EMOJI_HIGH_HUMIDITY = os.environ.get('EMOJI_HIGH_HUMIDITY') or "\U0001F4A6"
+    #     define absolute directory for the log file
+    LOG_FILE = os.environ.get('LOG_FILE')
     
     # best climate practices (bcp) dictionary, temp values in C
     BCP = {

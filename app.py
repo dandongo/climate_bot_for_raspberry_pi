@@ -31,11 +31,8 @@ emoji_low_humidity = config_obj.EMOJI_LOW_HUMIDITY
 emoji_high_humidity = config_obj.EMOJI_HIGH_HUMIDITY
 # best climate practices (bcp) dictionary
 bcp = config_obj.BCP
-
-# define what stage the plant is in (you should move this to another file you can easily change perhaps even in the web browser)
-stage = "seedling"
-#stage = "vegetation"
-#stage = "flowering"
+# stage as set in config
+stage = config_obj.STAGE
 
 # initiate argument parser
 parser = argparse.ArgumentParser(description="This script measures humidity and temperature and sends a telegram message, when temp and/or humidity are out of range as set in the global variables section.")
