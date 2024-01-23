@@ -4,11 +4,15 @@ import time
 import requests
 import json
 from colorama import Fore, Style
+import config
 
+# bring in the configuration file
+config_obj = config.Config()
+
+# get the LAT and LONG from the config
+lat = config_obj.LAT
+lng = config_obj.LNG
 def day_or_night():
-    # Replace these values with your location's latitude and longitude
-    lat = 36.587222
-    lng = -79.404444
     # Get the current date in YYYY-MM-DD format
     date = time.strftime("%Y-%m-%d")
     # Construct the API URL with the parameters
