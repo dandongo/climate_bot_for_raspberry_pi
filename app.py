@@ -11,21 +11,24 @@ import requests
 import argparse
 from day_or_night import day_or_night
 from dotenv import load_dotenv
-from config import Config
+import config
+
+# bring in the configuration file
+config_obj = config.Config()
 
 # global variables
 # name the sensor
-sensor_id = config['SENSOR_ID']
+sensor_id = config_obj.SENSOR_ID
 # define absolute directory for the log file
-log_file = 
+log_file = config_obj.LOG_FILE
 #telegram stuff
-TOKEN = 
-CHAT_ID = 
+TOKEN = config_obj.TOKEN
+CHAT_ID = config_obj.TOKEN
 # emoji codes
-emoji_low_temperature = "\U0001F976"
-emoji_high_temperature = "\U0001F975"
-emoji_low_humidity = "\U0001F335"
-emoji_high_humidity = "\U0001F4A6"
+emoji_low_temperature = config_obj.EMOJI_LOW_TEMPERATURE
+emoji_high_temperature = config_obj.EMOJI_HIGH_TEMPERATURE
+emoji_low_humidity = config_obj.EMOJI_LOW_HUMIDITY
+emoji_high_humidity = config_obj.EMOJI_HIGH_HUMIDITY
 
 
 # best climate practices (bcp) dictionary, temp values in C

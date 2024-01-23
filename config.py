@@ -7,8 +7,19 @@ load_dotenv(os.path.join(basedir, '.env'))
 class Config(object):
     TOKEN = os.environ.get('TOKEN')
     CHAT_ID = os.environ.get('CHAT_ID')
-    lat = os.environ.get('lat')
-    lng = os.environ.get('lng')
+    LAT = os.environ.get('LAT')
+    LNG = os.environ.get('LNG')
+    # adjustable configurations
+    # name the sensor
+    SENSOR_ID = os.environ.get('SENSOR_ID') or "dht11_01"
+    # define absolute directory for the log file
+    LOG_FILE = os.environ.get('LOG_FILE') or "/home/ubuntu/git/climate/hyg_log.json"
+    # emoji codes
+    EMOJI_LOW_TEMPERATURE = os.environ.get('EMOJI_LOW_TEMPERATURE') or "\U0001F976"
+    EMOJI_HIGH_TEMPERATURE = os.environ.get('EMOJI_HIGH_TEMPERATURE') or "\U0001F975"
+    EMOJI_LOW_HUMIDITY = os.environ.get('EMOJI_LOW_HUMIDITY') or "\U0001F335"
+    EMOJI_HIGH_HUMIDITY = os.environ.get('EMOJI_HIGH_HUMIDITY') or "\U0001F4A6"
+    
     # best climate practices (bcp) dictionary, temp values in C
     bcp = {
         "seedling" : {
