@@ -24,7 +24,6 @@ class Config(object):
     CHAT_ID = os.environ.get('CHAT_ID')
     LAT = os.environ.get('LAT')
     LNG = os.environ.get('LNG')
-    #     define absolute directory for the log file
     LOG_FILE = os.environ.get('LOG_FILE')
     
     # best climate practices (bcp) dictionary, temp values in C
