@@ -116,8 +116,8 @@ def take_reading():
         print(reading)
 
         try:
-            if os.path.exists(readings_file)
-            print("readings file exists!" + readings_file)
+            if os.path.exists(readings_file):
+                print("readings file exists!" + readings_file)
         except:
             print("could not write readings to file: " + readings_file)
     except RuntimeError as error:
