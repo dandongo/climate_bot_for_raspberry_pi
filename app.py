@@ -115,7 +115,7 @@ def take_reading():
             data = [sensor_id]
         print(reading)
         
-#        data[sensor_id].append(reading)
+        data[sensor_id].append(reading)
 #        with open(readings_file, 'w') as f:
 #            json.dump(data, f, indent=4)
 
