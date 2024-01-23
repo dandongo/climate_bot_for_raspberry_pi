@@ -23,12 +23,13 @@ sensor_id = config_obj.SENSOR_ID
 log_file = config_obj.LOG_FILE
 #telegram stuff
 TOKEN = config_obj.TOKEN
-CHAT_ID = config_obj.TOKEN
+CHAT_ID = config_obj.CHAT_ID
 # emoji codes
 emoji_low_temperature = config_obj.EMOJI_LOW_TEMPERATURE
 emoji_high_temperature = config_obj.EMOJI_HIGH_TEMPERATURE
 emoji_low_humidity = config_obj.EMOJI_LOW_HUMIDITY
 emoji_high_humidity = config_obj.EMOJI_HIGH_HUMIDITY
+
 
 
 # best climate practices (bcp) dictionary, temp values in C
