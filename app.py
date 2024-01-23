@@ -29,60 +29,8 @@ emoji_low_temperature = config_obj.EMOJI_LOW_TEMPERATURE
 emoji_high_temperature = config_obj.EMOJI_HIGH_TEMPERATURE
 emoji_low_humidity = config_obj.EMOJI_LOW_HUMIDITY
 emoji_high_humidity = config_obj.EMOJI_HIGH_HUMIDITY
-
-
-
-# best climate practices (bcp) dictionary, temp values in C
-bcp = {
-    "seedling" : {
-        "temperature": {
-            "day" : {
-                    "minimum" : 21,
-                    "maximum" : 29,
-            },
-            "night" : {
-                    "minimum" : 18,
-                    "maximum" : 27,
-            }
-        },
-        "humidity" : {
-            "minimum" : 75,
-            "maximum" : 85
-        }
-    },
-    "vegetation" : {
-        "temperature": {
-            "day" : {
-                    "minimum" : 21,
-                    "maximum" : 29,
-            },
-            "night" : {
-                    "minimum" : 16,
-                    "maximum" : 24,
-            },
-        },
-        "humidity" : {
-            "minimum" : 45,
-            "maximum" : 55
-        },
-    },
-    "flowering" : {
-        "temperature": {
-            "day" : {
-                    "minimum" : 21,
-                    "maximum" : 29,
-            },
-            "night" : {
-                    "minimum" : 16,
-                    "maximum" : 24,
-            },
-        },
-        "humidity" : {
-            "minimum" : 35,
-            "maximum" : 45
-        }
-    }
-}
+# best climate practices (bcp) dictionary
+bcp = config_obj.BCP
 
 # define what stage the plant is in (you should move this to another file you can easily change perhaps even in the web browser)
 stage = "seedling"

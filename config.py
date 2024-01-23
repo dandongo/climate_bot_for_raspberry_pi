@@ -21,7 +21,7 @@ class Config(object):
     EMOJI_HIGH_HUMIDITY = os.environ.get('EMOJI_HIGH_HUMIDITY') or "\U0001F4A6"
     
     # best climate practices (bcp) dictionary, temp values in C
-    bcp = {
+    BCP = {
         "seedling" : {
             "temperature": {
                 "day" : {
