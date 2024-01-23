@@ -19,8 +19,8 @@ config_obj = config.Config()
 # global variables
 # name the sensor
 sensor_id = config_obj.SENSOR_ID
-# define absolute directory for the log file
-log_file = config_obj.LOG_FILE
+# define absolute directory for the readings file
+readings_file = config_obj.READINGS_FILE
 #telegram stuff
 TOKEN = config_obj.TOKEN
 CHAT_ID = config_obj.CHAT_ID
@@ -116,15 +116,10 @@ def take_reading():
         print(reading)
 
         try:
-            try:
-                with open(log_file, "x") as f:
-                    f.write(reading)
-            except:
-                with open(log_file, "a") as f:
-                    f.write(reading)
-            f.close
+            if os.path.exists(readings_file)
+            print("readings file exists!" + readings_file)
         except:
-            print("could not write to log")
+            print("could not write readings to file: " + readings_file)
     except RuntimeError as error:
         print(error.args[0])
     except Exception as error:
